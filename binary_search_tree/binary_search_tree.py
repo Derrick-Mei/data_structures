@@ -105,24 +105,45 @@ class BinarySearchTree:
     # in an iterative depth first traversal
     def dft_print(self, node):
 
+        # a recursive approach
+        # if node is None:
+        #     return
+        # print(node.value)
+        # if node.left != None:
+        #     node.left.in_order_print(node.left)
+
+        # if node.right != None:
+        #     node.right.in_order_print(node.right)
+
         if node is None:
             return
-
-        print(node.value)
-
-        if node.left != None:
-            node.left.in_order_print(node.left)
-
-        if node.right != None:
-            node.right.in_order_print(node.right)
+        s = Stack()
+        s.push(node)
+        while s.size > 0:
+            node = s.pop()
+            print(node.value)
+            if node.left is not None:
+                s.push(node.left)
+            if node.right is not None:
+                s.push(node.right)
 
     # STRETCH Goals -------------------------
     # Note: Research may be required
 
     # Print Pre-order recursive DFT
     def pre_order_dft(self, node):
-        pass
+        # print from current node and traverse down
+        print(node.value)
+        if node.left is not None:
+            self.pre_order_dft(node.left)
+        if node.right is not None:
+            self.pre_order_dft(node.right)
 
     # Print Post-order recursive DFT
     def post_order_dft(self, node):
-        pass
+        # traverse all the way and the print back up
+        if node.left is not None:
+            self.post_order_dft(node.left)
+        if node.right is not None:
+            self.post_order_dft(node.right)
+        print(node.value)
